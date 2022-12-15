@@ -7,11 +7,18 @@ const { historiaclRouter } = require("./Routes/historical.route");
 const { originalRouter } = require("./Routes/original.route");
 const { popularRouter } = require("./Routes/popular.route");
 const {  premiumRouter } = require("./Routes/premium.route");
+const cors= require("cors")
 
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*",
+})
+);
 
 app.get("/", async (req, res) => {
   res.send("homepage");
