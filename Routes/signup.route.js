@@ -13,7 +13,7 @@ signupRouter.post("/", async (req, res) => {
       res.send("sign up successfully");
     }
   } catch (err) {
-    res.send("erroe while signup");
+    res.status(502).send("erroe while signup");
   }
 });
 module.exports = { signupRouter };
