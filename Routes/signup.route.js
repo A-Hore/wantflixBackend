@@ -5,15 +5,16 @@ const signupRouter = Router();
 signupRouter.post("/", async (req, res) => {
   const { password, email, name } = req.body;
   try {
-    let user = await User.find({ email });
+    let user = await UserModel.find({ email });
     if (user.length > 0) {
-      res.send("user allerady present");
+      res.send("user already present");
     } else {
       await new UserModel({ name, password, email }).save();
       res.send("sign up successfully");
     }
   } catch (err) {
-    res.status(502).send("erroe while signup");
+    res.send({msg:"error while signup"});
+    console.log(err)
   }
 });
 module.exports = { signupRouter };
