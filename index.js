@@ -6,8 +6,10 @@ const { featuredRouter } = require("./Routes/featured.route");
 const { historiaclRouter } = require("./Routes/historical.route");
 const { originalRouter } = require("./Routes/original.route");
 const { popularRouter } = require("./Routes/popular.route");
-const {  premiumRouter } = require("./Routes/premium.route");
-const cors= require("cors")
+const { premiumRouter } = require("./Routes/premium.route");
+const { loginRouter } = require("./Routes/login.route");
+const { signupRouter } = require("./Routes/signup.route");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -36,14 +38,14 @@ app.listen(process.env.PORT, async () => {
   }
 });
 
-
-
 // ALL ROUTES
 
 app.use("/current", currentRouter);
-app.use("/comedy" , commediRouter)
-app.use("/featured", featuredRouter)
-app.use("/historical", historiaclRouter)
-app.use("/original",originalRouter)
-app.use("/popular", popularRouter)
-app.use("/premium",premiumRouter)
+app.use("/comedy", commediRouter);
+app.use("/featured", featuredRouter);
+app.use("/historical", historiaclRouter);
+app.use("/original", originalRouter);
+app.use("/popular", popularRouter);
+app.use("/premium", premiumRouter);
+app.use("/login", loginRouter);
+app.use("/signup", signupRouter);
