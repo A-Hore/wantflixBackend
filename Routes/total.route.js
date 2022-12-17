@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {Total  } = require("../Models/Total.model");
+const { Total } = require("../Models/Total.model");
 const totalRouter = Router();
 totalRouter.get("/", async (req, res) => {
   try {
@@ -12,17 +12,22 @@ totalRouter.get("/", async (req, res) => {
   }
 });
 
-totalRouter.get("/search", async (req, res) => {
-    let title = req.query.q;
-    try {
-      let searchm = await Total.find({
-        Title: { $regex: title, $options: "$i" }
-      });
-      console.log(title)
-      res.send(searchm);
-    } catch (err) {
-      console.log(err);
-    }
-  });
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-module.exports = { totalRouter};
+totalRouter.get("/search", async (req, res) => {
+ let params = capitalizeFirstLetter(req.query.title);
+  console.log(params,"Line 21")
+
+  let data = await Total.findOne({Title:params});
+  console.log(data)
+
+  try {
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+module.exports = { totalRouter };

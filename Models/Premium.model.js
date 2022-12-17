@@ -13,6 +13,9 @@ const currenSchema = mongoose.Schema({
   Language: { type: String, required: true },
   Country: { type: String, required: true },
   Awards: { type: String, required: true },
+  Video_utl: { type: String },
+
+
 });
 const Prime = mongoose.model("prime", {});
 module.exports = { Prime };
